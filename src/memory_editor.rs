@@ -81,6 +81,26 @@ impl MemoryEditor {
         self.raw_editor.HighlightColor = color.into()
     }
 
+    /// Get the `OptShowHexII` field.
+    pub fn get_show_hexii(&self) -> bool {
+        self.raw_editor.OptShowHexII
+    }
+
+    /// Set the `OptShowHexII` field.
+    pub fn set_show_hexii(&mut self, read_only: bool) {
+        self.raw_editor.OptShowHexII = read_only;
+    }
+
+    /// Get the `OptShowAscii` field.
+    pub fn get_show_ascii(&self) -> bool {
+        self.raw_editor.OptShowAscii
+    }
+
+    /// Set the `OptShowAscii` field.
+    pub fn set_show_ascii(&mut self, read_only: bool) {
+        self.raw_editor.OptShowAscii = read_only;
+    }
+
     // Render memory editor contents only.
     pub fn draw_contents(&mut self, _: &Ui, mem_data: &mut [u8], base_display_addr: Option<usize>) {
         let mem_edit = (&mut self.raw_editor) as *mut sys::MemoryEditor;
