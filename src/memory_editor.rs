@@ -1,10 +1,24 @@
+use std::marker::PhantomData;
+
 use imgui::{ImColor, ImStr, Ui};
 use imgui_memory_editor_sys as sys;
 
 /// Dear ImGui memory editor widget.
+///  
+/// Use by calling either `draw_contents` or
+/// `draw_window` methods.
+///  
+/// The `ReadFn`, `WriteFn` and `HighlightFn` fields are currently
+/// not supported due to unsurety over how to structure
+/// the API.
 #[derive(Debug)]
 pub struct MemoryEditor {
     raw_editor: sys::MemoryEditor,
+    
+    /// Avoid implementing Send and Sync, since Dear ImGui
+    /// is not thread safe.
+    /// [https://github.com/imgui-rs/imgui-rs/issues/392#issuecomment-737779381]
+    _phantom_data: PhantomData<*const ()>,
 }
 
 impl Default for MemoryEditor {
@@ -48,6 +62,7 @@ impl MemoryEditor {
                 PreviewEndianess: 0,
                 PreviewDataType: 4, // ImGuiDataType_S32
             },
+            _phantom_data: PhantomData,
         }
     }
 
@@ -101,7 +116,10 @@ impl MemoryEditor {
         self.raw_editor.OptShowAscii = read_only;
     }
 
-    // Render memory editor contents only.
+    /// Render only the contents of the memory editor, without any window.
+    ///  
+    /// The `base_display_addr` field has a default value of `0x0000` if
+    /// `None` is passed as an argument.
     pub fn draw_contents(&mut self, _: &Ui, mem_data: &mut [u8], base_display_addr: Option<usize>) {
         let mem_edit = (&mut self.raw_editor) as *mut sys::MemoryEditor;
 
@@ -118,7 +136,10 @@ impl MemoryEditor {
         }
     }
 
-    // Render standalone memory editor window.
+    /// Render standalone memory editor, in a window.
+    ///  
+    /// The `base_display_addr` field has a default value of `0x0000` if
+    /// `None` is passed as an argument.
     pub fn draw_window(
         &mut self,
         _: &Ui,
