@@ -11,6 +11,10 @@ The crate on `crates.io` is outdated, and has a totally different API than this 
 
 This crate tries to stay close to the original widget's API.
 
+## Documentation
+
+You can access the docs for this crate [here](https://nightshade256.github.io/rust-imgui-memory-editor/imgui_memory_editor/index.html).
+
 ## License
 
 Both the `sys` and wrapper crates are licensed under the MIT license.
