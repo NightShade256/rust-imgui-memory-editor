@@ -1,7 +1,6 @@
-#[cfg(test)]
-mod tests {
-    #[test]
-    fn it_works() {
-        assert_eq!(2 + 2, 4);
-    }
-}
+//! Safe Rust bindings to Dear ImGui memory editor widget.
+
+mod memory_editor;
+
+// Rexport safe wrapper.
+pub use crate::memory_editor::MemoryEditor;
