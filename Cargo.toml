@@ -1,0 +1,12 @@
+[workspace]
+members = [
+    "imgui-memory-editor-sys",
+]
+
+[package]
+name = "imgui-memory-editor"
+version = "0.1.0"
+authors = ["Anish Jewalikar <anishjewalikar@gmail.com>"]
+edition = "2018"
+
+[dependencies]
