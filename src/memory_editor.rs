@@ -1,10 +1,5 @@
-use imgui::{ImStr, Ui};
+use imgui::{ImColor, ImStr, Ui};
 use imgui_memory_editor_sys as sys;
-
-/// Convert raw RGBA values to IM_COL32.
-fn rgba_to_imcol32(r: u32, g: u32, b: u32, a: u32) -> u32 {
-    a << 24 | b << 16 | g << 8 | r
-}
 
 /// Dear ImGui memory editor widget.
 #[derive(Debug)]
@@ -35,7 +30,7 @@ impl MemoryEditor {
                 OptUpperCaseHex: true,
                 OptMidColsCount: 8,
                 OptAddrDigitsCount: 0,
-                HighlightColor: rgba_to_imcol32(255, 255, 255, 50),
+                HighlightColor: 855638015, // (255, 255, 255, 50)
                 ReadFn: None,
                 WriteFn: None,
                 HighlightFn: None,
@@ -54,6 +49,36 @@ impl MemoryEditor {
                 PreviewDataType: 4, // ImGuiDataType_S32
             },
         }
+    }
+
+    /// Get the `ReadOnly` field.
+    pub fn get_read_only(&self) -> bool {
+        self.raw_editor.ReadOnly
+    }
+
+    /// Set the `ReadOnly` field.
+    pub fn set_read_only(&mut self, read_only: bool) {
+        self.raw_editor.ReadOnly = read_only;
+    }
+
+    /// Get the `Cols` field.
+    pub fn get_cols(&self) -> i32 {
+        self.raw_editor.Cols
+    }
+
+    /// Set the `Cols` field.
+    pub fn set_cols(&mut self, columns: i32) {
+        self.raw_editor.Cols = columns;
+    }
+
+    /// Get the `HighlightColor` field.
+    pub fn get_highlight_color(&self) -> ImColor {
+        self.raw_editor.HighlightColor.into()
+    }
+
+    /// Set the `HighlightColor` field.
+    pub fn set_highlight_color(&mut self, color: ImColor) {
+        self.raw_editor.HighlightColor = color.into()
     }
 
     // Render memory editor contents only.
