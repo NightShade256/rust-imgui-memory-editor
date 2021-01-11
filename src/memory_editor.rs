@@ -1,4 +1,5 @@
 use std::marker::PhantomData;
+use std::mem;
 
 use imgui::{ImColor, ImStr, Ui};
 use imgui_memory_editor_sys as sys;
@@ -119,6 +120,70 @@ impl MemoryEditor {
     /// Set the `OptShowAscii` field.
     pub fn set_show_ascii(&mut self, read_only: bool) {
         self.raw_editor.OptShowAscii = read_only;
+    }
+
+    /// Set the `ReadFn` field.
+    ///
+    /// You can only pass in ordinary functions
+    /// and stateless closures, if you pass anything
+    /// else this function **will panic**.
+    pub fn set_read_fn<F>(&mut self, _: F)
+    where
+        F: Fn(*const sys::ImU8, usize) -> sys::ImU8,
+    {
+        assert!(mem::size_of::<F>() == 0);
+
+        unsafe extern "C" fn wrapped<F: Fn(*const sys::ImU8, usize) -> sys::ImU8>(
+            mem_data: *const sys::ImU8,
+            offset: usize,
+        ) -> sys::ImU8 {
+            mem::zeroed::<F>()(mem_data, offset)
+        }
+
+        self.raw_editor.ReadFn = Some(wrapped::<F>);
+    }
+
+    /// Set the `WriteFn` field.
+    ///
+    /// You can only pass in ordinary functions
+    /// and stateless closures, if you pass anything
+    /// else this function **will panic**.
+    pub fn set_write_fn<F>(&mut self, _: F)
+    where
+        F: Fn(*mut sys::ImU8, usize, sys::ImU8),
+    {
+        assert!(mem::size_of::<F>() == 0);
+
+        unsafe extern "C" fn wrapped<F: Fn(*mut sys::ImU8, usize, sys::ImU8)>(
+            mem_data: *mut sys::ImU8,
+            offset: usize,
+            value: sys::ImU8,
+        ) {
+            mem::zeroed::<F>()(mem_data, offset, value);
+        }
+
+        self.raw_editor.WriteFn = Some(wrapped::<F>);
+    }
+
+    /// Set the `HighlightFn` field.
+    ///
+    /// You can only pass in ordinary functions
+    /// and stateless closures, if you pass anything
+    /// else this function **will panic**.
+    pub fn set_highlight_fn<F>(&mut self, _: F)
+    where
+        F: Fn(*const sys::ImU8, usize) -> bool,
+    {
+        assert!(mem::size_of::<F>() == 0);
+
+        unsafe extern "C" fn wrapped<F: Fn(*const sys::ImU8, usize) -> bool>(
+            mem_data: *const sys::ImU8,
+            offset: usize,
+        ) -> bool {
+            mem::zeroed::<F>()(mem_data, offset)
+        }
+
+        self.raw_editor.HighlightFn = Some(wrapped::<F>);
     }
 
     /// Render only the contents of the memory editor, without any window.
