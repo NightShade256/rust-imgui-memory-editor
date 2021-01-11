@@ -1,4 +1,6 @@
 //! Safe Rust bindings to Dear ImGui memory editor widget.
+//!  
+//! See [`MemoryEditor`] struct for more.
 
 mod memory_editor;
 

@@ -11,10 +11,15 @@ use imgui_memory_editor_sys as sys;
 /// The `ReadFn`, `WriteFn` and `HighlightFn` fields are currently
 /// not supported due to unsurety over how to structure
 /// the API.
+///  
+/// ## Note:
+/// While theoretically this struct is Send + Sync compatible, it doesn't
+/// implement those traits, since Dear ImGui
+/// [isn't thread safe](https://github.com/imgui-rs/imgui-rs/issues/392#issuecomment-737779381).
 #[derive(Debug)]
 pub struct MemoryEditor {
     raw_editor: sys::MemoryEditor,
-    
+
     /// Avoid implementing Send and Sync, since Dear ImGui
     /// is not thread safe.
     /// [https://github.com/imgui-rs/imgui-rs/issues/392#issuecomment-737779381]
