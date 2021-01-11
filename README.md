@@ -7,9 +7,8 @@ Safe Rust bindings to the Dear ImGui memory editor widget, to be used with `imgu
 This crate is *not* published on `crates.io` since there is already
 a crate which implements bindings to the widget with the same name.
 
-The crate on `crates.io` is outdated, and has a totally different API than this crate.
-
-This crate tries to stay close to the original widget's API.
+The crate on `crates.io` is outdated, and has a totally different API while
+this crate tries to stay close to the original widget's API.
 
 ## Usage
 
@@ -26,4 +25,4 @@ You can access the docs for this crate [here](https://nightshade256.github.io/ru
 
 ## License
 
-Both the `sys` and wrapper crates are licensed under the MIT license.
+Both the sys and wrapper crates are licensed under the MIT license.
