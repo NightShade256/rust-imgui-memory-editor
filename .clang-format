@@ -1,0 +1,6 @@
+Language: Cpp
+
+BasedOnStyle: WebKit
+BreakBeforeBraces: Attach
+ColumnLimit: 88
+IndentWidth: 4

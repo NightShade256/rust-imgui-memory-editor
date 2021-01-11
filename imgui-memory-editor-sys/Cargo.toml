@@ -3,5 +3,14 @@ name = "imgui-memory-editor-sys"
 version = "0.1.0"
 authors = ["Anish Jewalikar <anishjewalikar@gmail.com>"]
 edition = "2018"
+description = "Raw, unsafe no_std bindings to memory editor widget."
+license = "MIT"
+readme = "README.md"
+build = "build.rs"
+links = "imgui_memory_editor"
+
+[build-dependencies]
+cc = "1.0"
 
 [dependencies]
+cty = "0.2"
