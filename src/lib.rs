@@ -4,5 +4,8 @@
 
 mod memory_editor;
 
-// Rexport safe wrapper.
+// Export safe wrapper.
 pub use crate::memory_editor::MemoryEditor;
+
+// Re-export ImU8 type.
+pub use imgui_memory_editor_sys::ImU8;

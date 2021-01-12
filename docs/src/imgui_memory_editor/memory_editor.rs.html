@@ -171,8 +171,70 @@
 <span id="168">168</span>
 <span id="169">169</span>
 <span id="170">170</span>
+<span id="171">171</span>
+<span id="172">172</span>
+<span id="173">173</span>
+<span id="174">174</span>
+<span id="175">175</span>
+<span id="176">176</span>
+<span id="177">177</span>
+<span id="178">178</span>
+<span id="179">179</span>
+<span id="180">180</span>
+<span id="181">181</span>
+<span id="182">182</span>
+<span id="183">183</span>
+<span id="184">184</span>
+<span id="185">185</span>
+<span id="186">186</span>
+<span id="187">187</span>
+<span id="188">188</span>
+<span id="189">189</span>
+<span id="190">190</span>
+<span id="191">191</span>
+<span id="192">192</span>
+<span id="193">193</span>
+<span id="194">194</span>
+<span id="195">195</span>
+<span id="196">196</span>
+<span id="197">197</span>
+<span id="198">198</span>
+<span id="199">199</span>
+<span id="200">200</span>
+<span id="201">201</span>
+<span id="202">202</span>
+<span id="203">203</span>
+<span id="204">204</span>
+<span id="205">205</span>
+<span id="206">206</span>
+<span id="207">207</span>
+<span id="208">208</span>
+<span id="209">209</span>
+<span id="210">210</span>
+<span id="211">211</span>
+<span id="212">212</span>
+<span id="213">213</span>
+<span id="214">214</span>
+<span id="215">215</span>
+<span id="216">216</span>
+<span id="217">217</span>
+<span id="218">218</span>
+<span id="219">219</span>
+<span id="220">220</span>
+<span id="221">221</span>
+<span id="222">222</span>
+<span id="223">223</span>
+<span id="224">224</span>
+<span id="225">225</span>
+<span id="226">226</span>
+<span id="227">227</span>
+<span id="228">228</span>
+<span id="229">229</span>
+<span id="230">230</span>
+<span id="231">231</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">marker</span>::<span class="ident">PhantomData</span>;
+<span class="kw">use</span> <span class="ident">std</span>::<span class="ident">mem</span>;
 
 <span class="kw">use</span> <span class="ident">imgui</span>::{<span class="ident">ImColor</span>, <span class="ident">ImStr</span>, <span class="ident">Ui</span>};
 <span class="kw">use</span> <span class="ident">imgui_memory_editor_sys</span> <span class="kw">as</span> <span class="ident">sys</span>;
@@ -181,10 +243,6 @@
 <span class="doccomment">///  </span>
 <span class="doccomment">/// Use by calling either `draw_contents` or</span>
 <span class="doccomment">/// `draw_window` methods.</span>
-<span class="doccomment">///  </span>
-<span class="doccomment">/// The `ReadFn`, `WriteFn` and `HighlightFn` fields are currently</span>
-<span class="doccomment">/// not supported due to unsurety over how to structure</span>
-<span class="doccomment">/// the API.</span>
 <span class="doccomment">///  </span>
 <span class="doccomment">/// ## Note:</span>
 <span class="doccomment">/// While theoretically this struct is Send + Sync compatible, it doesn&#39;t</span>
@@ -281,8 +339,8 @@
     }
 
     <span class="doccomment">/// Set the `OptShowHexII` field.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_show_hexii</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">read_only</span>: <span class="ident">bool</span>) {
-        <span class="self">self</span>.<span class="ident">raw_editor</span>.<span class="ident">OptShowHexII</span> <span class="op">=</span> <span class="ident">read_only</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_show_hexii</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">show</span>: <span class="ident">bool</span>) {
+        <span class="self">self</span>.<span class="ident">raw_editor</span>.<span class="ident">OptShowHexII</span> <span class="op">=</span> <span class="ident">show</span>;
     }
 
     <span class="doccomment">/// Get the `OptShowAscii` field.</span>
@@ -291,8 +349,72 @@
     }
 
     <span class="doccomment">/// Set the `OptShowAscii` field.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_show_ascii</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">read_only</span>: <span class="ident">bool</span>) {
-        <span class="self">self</span>.<span class="ident">raw_editor</span>.<span class="ident">OptShowAscii</span> <span class="op">=</span> <span class="ident">read_only</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_show_ascii</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">show</span>: <span class="ident">bool</span>) {
+        <span class="self">self</span>.<span class="ident">raw_editor</span>.<span class="ident">OptShowAscii</span> <span class="op">=</span> <span class="ident">show</span>;
+    }
+
+    <span class="doccomment">/// Set the `ReadFn` field.</span>
+    <span class="doccomment">///  </span>
+    <span class="doccomment">/// You can only pass in ordinary functions</span>
+    <span class="doccomment">/// and stateless closures, if you pass anything</span>
+    <span class="doccomment">/// else this function **will panic**.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_read_fn</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="kw">_</span>: <span class="ident">F</span>)
+    <span class="kw">where</span>
+        <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">*</span><span class="kw">const</span> <span class="ident">sys</span>::<span class="ident">ImU8</span>, <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">sys</span>::<span class="ident">ImU8</span>,
+    {
+        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">mem</span>::<span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>() <span class="op">=</span><span class="op">=</span> <span class="number">0</span>);
+
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">wrapped</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">*</span><span class="kw">const</span> <span class="ident">sys</span>::<span class="ident">ImU8</span>, <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">sys</span>::<span class="ident">ImU8</span><span class="op">&gt;</span>(
+            <span class="ident">mem_data</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">sys</span>::<span class="ident">ImU8</span>,
+            <span class="ident">offset</span>: <span class="ident">usize</span>,
+        ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">sys</span>::<span class="ident">ImU8</span> {
+            <span class="ident">mem</span>::<span class="ident">zeroed</span>::<span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>()(<span class="ident">mem_data</span>, <span class="ident">offset</span>)
+        }
+
+        <span class="self">self</span>.<span class="ident">raw_editor</span>.<span class="ident">ReadFn</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">wrapped</span>::<span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>);
+    }
+
+    <span class="doccomment">/// Set the `WriteFn` field.</span>
+    <span class="doccomment">///  </span>
+    <span class="doccomment">/// You can only pass in ordinary functions</span>
+    <span class="doccomment">/// and stateless closures, if you pass anything</span>
+    <span class="doccomment">/// else this function **will panic**.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_write_fn</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="kw">_</span>: <span class="ident">F</span>)
+    <span class="kw">where</span>
+        <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">sys</span>::<span class="ident">ImU8</span>, <span class="ident">usize</span>, <span class="ident">sys</span>::<span class="ident">ImU8</span>),
+    {
+        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">mem</span>::<span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>() <span class="op">=</span><span class="op">=</span> <span class="number">0</span>);
+
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">wrapped</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">sys</span>::<span class="ident">ImU8</span>, <span class="ident">usize</span>, <span class="ident">sys</span>::<span class="ident">ImU8</span>)<span class="op">&gt;</span>(
+            <span class="ident">mem_data</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">sys</span>::<span class="ident">ImU8</span>,
+            <span class="ident">offset</span>: <span class="ident">usize</span>,
+            <span class="ident">value</span>: <span class="ident">sys</span>::<span class="ident">ImU8</span>,
+        ) {
+            <span class="ident">mem</span>::<span class="ident">zeroed</span>::<span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>()(<span class="ident">mem_data</span>, <span class="ident">offset</span>, <span class="ident">value</span>);
+        }
+
+        <span class="self">self</span>.<span class="ident">raw_editor</span>.<span class="ident">WriteFn</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">wrapped</span>::<span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>);
+    }
+
+    <span class="doccomment">/// Set the `HighlightFn` field.</span>
+    <span class="doccomment">///  </span>
+    <span class="doccomment">/// You can only pass in ordinary functions</span>
+    <span class="doccomment">/// and stateless closures, if you pass anything</span>
+    <span class="doccomment">/// else this function **will panic**.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_highlight_fn</span><span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="kw">_</span>: <span class="ident">F</span>)
+    <span class="kw">where</span>
+        <span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">*</span><span class="kw">const</span> <span class="ident">sys</span>::<span class="ident">ImU8</span>, <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span>,
+    {
+        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">mem</span>::<span class="ident">size_of</span>::<span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>() <span class="op">=</span><span class="op">=</span> <span class="number">0</span>);
+
+        <span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> <span class="ident">wrapped</span><span class="op">&lt;</span><span class="ident">F</span>: <span class="ident">Fn</span>(<span class="kw-2">*</span><span class="kw">const</span> <span class="ident">sys</span>::<span class="ident">ImU8</span>, <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span><span class="op">&gt;</span>(
+            <span class="ident">mem_data</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">sys</span>::<span class="ident">ImU8</span>,
+            <span class="ident">offset</span>: <span class="ident">usize</span>,
+        ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+            <span class="ident">mem</span>::<span class="ident">zeroed</span>::<span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>()(<span class="ident">mem_data</span>, <span class="ident">offset</span>)
+        }
+
+        <span class="self">self</span>.<span class="ident">raw_editor</span>.<span class="ident">HighlightFn</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">wrapped</span>::<span class="op">&lt;</span><span class="ident">F</span><span class="op">&gt;</span>);
     }
 
     <span class="doccomment">/// Render only the contents of the memory editor, without any window.</span>

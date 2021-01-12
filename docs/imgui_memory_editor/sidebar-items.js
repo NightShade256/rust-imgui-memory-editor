@@ -1,1 +1,1 @@
-initSidebarItems({"struct":[["MemoryEditor","Dear ImGui memory editor widget."]]});
+initSidebarItems({"struct":[["MemoryEditor","Dear ImGui memory editor widget."]],"type":[["ImU8",""]]});

@@ -9,10 +9,6 @@ use imgui_memory_editor_sys as sys;
 /// Use by calling either `draw_contents` or
 /// `draw_window` methods.
 ///  
-/// The `ReadFn`, `WriteFn` and `HighlightFn` fields are currently
-/// not supported due to unsurety over how to structure
-/// the API.
-///  
 /// ## Note:
 /// While theoretically this struct is Send + Sync compatible, it doesn't
 /// implement those traits, since Dear ImGui
@@ -108,8 +104,8 @@ impl MemoryEditor {
     }
 
     /// Set the `OptShowHexII` field.
-    pub fn set_show_hexii(&mut self, read_only: bool) {
-        self.raw_editor.OptShowHexII = read_only;
+    pub fn set_show_hexii(&mut self, show: bool) {
+        self.raw_editor.OptShowHexII = show;
     }
 
     /// Get the `OptShowAscii` field.
@@ -118,12 +114,12 @@ impl MemoryEditor {
     }
 
     /// Set the `OptShowAscii` field.
-    pub fn set_show_ascii(&mut self, read_only: bool) {
-        self.raw_editor.OptShowAscii = read_only;
+    pub fn set_show_ascii(&mut self, show: bool) {
+        self.raw_editor.OptShowAscii = show;
     }
 
     /// Set the `ReadFn` field.
-    ///
+    ///  
     /// You can only pass in ordinary functions
     /// and stateless closures, if you pass anything
     /// else this function **will panic**.
@@ -144,7 +140,7 @@ impl MemoryEditor {
     }
 
     /// Set the `WriteFn` field.
-    ///
+    ///  
     /// You can only pass in ordinary functions
     /// and stateless closures, if you pass anything
     /// else this function **will panic**.
@@ -166,7 +162,7 @@ impl MemoryEditor {
     }
 
     /// Set the `HighlightFn` field.
-    ///
+    ///  
     /// You can only pass in ordinary functions
     /// and stateless closures, if you pass anything
     /// else this function **will panic**.
