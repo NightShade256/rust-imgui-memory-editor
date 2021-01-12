@@ -56,7 +56,6 @@ pub struct MemoryEditor_Sizes {
     pub WindowWidth: f32,
 }
 extern "C" {
-    #[link_name = "\u{1}?DrawContents@@YAXPEAUMemoryEditor@@PEAX_K2@Z"]
     pub fn DrawContents(
         mem_edit: *mut MemoryEditor,
         mem_data: *mut cty::c_void,
@@ -65,7 +64,6 @@ extern "C" {
     );
 }
 extern "C" {
-    #[link_name = "\u{1}?DrawWindow@@YAXPEAUMemoryEditor@@PEBDPEAX_K3@Z"]
     pub fn DrawWindow(
         mem_edit: *mut MemoryEditor,
         title: *const cty::c_char,
