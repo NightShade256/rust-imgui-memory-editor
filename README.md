@@ -1,18 +1,21 @@
 # Dear ImGui Memory Editor
 
-Safe Rust bindings to the Dear ImGui memory editor widget, to be used with `imgui-rs`.
+Safe, Rust bindings to the Dear ImGui memory editor widget, to be used with `imgui-rs`.
 
 ## Note
 
-This crate is *not* published on `crates.io` since there is already
-a crate on `crates.io` which implements bindings to the widget with the same name.
+Not to be confused with the crate on `crates.io` with the same name.
 
-The crate on `crates.io` is outdated, and has a totally different API while
-this crate tries to stay close to the original widget's API.
+This crate is a completely different crate from the one on `crates.io` but both
+try to achieve the same goal, hence you can use whichever you want.
+
+This crate tries to be as similar as possible to the C++ widget, while the one
+on `crates.io` has a bit of a different API.
 
 ## Usage
 
-You can use this crate by adding the following in your `Cargo.toml`
+Since the crate is not available on `crates.io`, you cannot directly specify the version
+and instead must add the following to your `Cargo.toml`,
 
 ```toml
 [dependencies]
@@ -28,4 +31,4 @@ You can access the docs for this crate [here](https://nightshade256.github.io/ru
 
 ## License
 
-Both the sys and wrapper crates are licensed under the MIT license.
+This project is licensed under the terms of the MIT license.
