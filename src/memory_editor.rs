@@ -79,12 +79,12 @@ impl MemoryEditor {
     }
 
     /// Get the `Cols` field.
-    pub fn get_cols(&self) -> i32 {
+    pub fn get_cols(&self) -> cty::c_int {
         self.raw_editor.Cols
     }
 
     /// Set the `Cols` field.
-    pub fn set_cols(&mut self, columns: i32) {
+    pub fn set_cols(&mut self, columns: cty::c_int) {
         self.raw_editor.Cols = columns;
     }
 
@@ -116,6 +116,66 @@ impl MemoryEditor {
     /// Set the `OptShowAscii` field.
     pub fn set_show_ascii(&mut self, show: bool) {
         self.raw_editor.OptShowAscii = show;
+    }
+
+    /// Get the `OptShowOptions` field.
+    pub fn get_show_options(&self) -> bool {
+        self.raw_editor.OptShowOptions
+    }
+
+    /// Set the `OptShowOptions` field.
+    pub fn set_show_options(&mut self, show: bool) {
+        self.raw_editor.OptShowOptions = show;
+    }
+
+    /// Get the `OptShowDataPreview` field.
+    pub fn get_show_data_preview(&self) -> bool {
+        self.raw_editor.OptShowDataPreview
+    }
+
+    /// Set the `OptShowDataPreview` field.
+    pub fn set_show_data_preview(&mut self, show: bool) {
+        self.raw_editor.OptShowDataPreview = show;
+    }
+
+    /// Get the `OptGreyOutZeroes` field.
+    pub fn get_grey_out_zeroes(&self) -> bool {
+        self.raw_editor.OptGreyOutZeroes
+    }
+
+    /// Set the `OptGreyOutZeroes` field.
+    pub fn set_grey_out_zeroes(&mut self, greyout: bool) {
+        self.raw_editor.OptGreyOutZeroes = greyout;
+    }
+
+    /// Get the `OptUpperCaseHex` field.
+    pub fn get_upper_case_hex(&self) -> bool {
+        self.raw_editor.OptUpperCaseHex
+    }
+
+    /// Set the `OptUpperCaseHex` field.
+    pub fn set_upper_case_hex(&mut self, uppercase: bool) {
+        self.raw_editor.OptUpperCaseHex = uppercase;
+    }
+
+    /// Get the `OptMidColsCount` field.
+    pub fn get_mid_cols_count(&self) -> cty::c_int {
+        self.raw_editor.OptMidColsCount
+    }
+
+    /// Set the `OptMidColsCount` field.
+    pub fn set_mid_cols_count(&mut self, count: cty::c_int) {
+        self.raw_editor.OptMidColsCount = count;
+    }
+
+    /// Get the `OptAddrDigitsCount` field.
+    pub fn get_addr_digits_count(&self) -> cty::c_int {
+        self.raw_editor.OptAddrDigitsCount
+    }
+
+    /// Set the `OptAddrDigitsCount` field.
+    pub fn set_addr_digits_count(&mut self, count: cty::c_int) {
+        self.raw_editor.OptAddrDigitsCount = count;
     }
 
     /// Set the `ReadFn` field.
