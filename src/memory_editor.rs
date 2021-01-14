@@ -68,6 +68,16 @@ impl MemoryEditor {
         }
     }
 
+    /// Get the `Open` field.
+    pub fn get_open(&self) -> bool {
+        self.raw_editor.Open
+    }
+
+    /// Set the `Open` field.
+    pub fn set_open(&mut self, open: bool) {
+        self.raw_editor.Open = open;
+    }
+
     /// Get the `ReadOnly` field.
     pub fn get_read_only(&self) -> bool {
         self.raw_editor.ReadOnly

@@ -5,7 +5,7 @@ members = [
 
 [package]
 name = "imgui-memory-editor"
-version = "0.1.0"
+version = "0.2.0"
 authors = ["Anish Jewalikar <anishjewalikar@gmail.com>"]
 edition = "2018"
 description = "Safe Rust bindings to Dear ImGui memory editor widget."
