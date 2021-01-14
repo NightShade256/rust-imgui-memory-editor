@@ -4,18 +4,16 @@ Safe, Rust bindings to the Dear ImGui memory editor widget, to be used with `img
 
 ## Note
 
-Not to be confused with the crate on `crates.io` with the same name.
+These bindings were made for personal use, and are limited in use.
 
-This crate is a completely different crate from the one on `crates.io` but both
-try to achieve the same goal, hence you can use whichever you want.
+Please checkout [imgui-memory-editor](https://crates.io/crates/imgui-memory-editor) crate on `crates.io` which is a more
+comprehensive set of bindings for the same.
 
-This crate tries to be as similar as possible to the C++ widget, while the one
-on `crates.io` has a bit of a different API.
+This crate tries to be minimal, and close to the original C++ API.
 
 ## Usage
 
-Since the crate is not available on `crates.io`, you cannot directly specify the version
-and instead must add the following to your `Cargo.toml`,
+Since the crate is not available on `crates.io`, you have to add the following to your `Cargo.toml`,
 
 ```toml
 [dependencies]
