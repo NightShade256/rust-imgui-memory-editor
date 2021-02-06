@@ -80,23 +80,23 @@
 
 <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">nonstandard_style</span>, <span class="ident">clippy</span>::<span class="ident">all</span>)]</span>
 
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">ImGuiDataType</span> <span class="op">=</span> <span class="ident">cty</span>::<span class="ident">c_int</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">ImU8</span> <span class="op">=</span> <span class="ident">cty</span>::<span class="ident">c_uchar</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">ImU32</span> <span class="op">=</span> <span class="ident">cty</span>::<span class="ident">c_uint</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">ImGuiDataType</span> <span class="op">=</span> <span class="ident">chlorine</span>::<span class="ident">c_int</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">ImU8</span> <span class="op">=</span> <span class="ident">chlorine</span>::<span class="ident">c_uchar</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">ImU32</span> <span class="op">=</span> <span class="ident">chlorine</span>::<span class="ident">c_uint</span>;
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">MemoryEditor</span> {
     <span class="kw">pub</span> <span class="ident">Open</span>: <span class="ident">bool</span>,
     <span class="kw">pub</span> <span class="ident">ReadOnly</span>: <span class="ident">bool</span>,
-    <span class="kw">pub</span> <span class="ident">Cols</span>: <span class="ident">cty</span>::<span class="ident">c_int</span>,
+    <span class="kw">pub</span> <span class="ident">Cols</span>: <span class="ident">chlorine</span>::<span class="ident">c_int</span>,
     <span class="kw">pub</span> <span class="ident">OptShowOptions</span>: <span class="ident">bool</span>,
     <span class="kw">pub</span> <span class="ident">OptShowDataPreview</span>: <span class="ident">bool</span>,
     <span class="kw">pub</span> <span class="ident">OptShowHexII</span>: <span class="ident">bool</span>,
     <span class="kw">pub</span> <span class="ident">OptShowAscii</span>: <span class="ident">bool</span>,
     <span class="kw">pub</span> <span class="ident">OptGreyOutZeroes</span>: <span class="ident">bool</span>,
     <span class="kw">pub</span> <span class="ident">OptUpperCaseHex</span>: <span class="ident">bool</span>,
-    <span class="kw">pub</span> <span class="ident">OptMidColsCount</span>: <span class="ident">cty</span>::<span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">OptAddrDigitsCount</span>: <span class="ident">cty</span>::<span class="ident">c_int</span>,
+    <span class="kw">pub</span> <span class="ident">OptMidColsCount</span>: <span class="ident">chlorine</span>::<span class="ident">c_int</span>,
+    <span class="kw">pub</span> <span class="ident">OptAddrDigitsCount</span>: <span class="ident">chlorine</span>::<span class="ident">c_int</span>,
     <span class="kw">pub</span> <span class="ident">HighlightColor</span>: <span class="ident">ImU32</span>,
     <span class="kw">pub</span> <span class="ident">ReadFn</span>: ::<span class="ident">core</span>::<span class="ident">option</span>::<span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span>(<span class="ident">data</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">ImU8</span>, <span class="ident">off</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ImU8</span><span class="op">&gt;</span>,
     <span class="kw">pub</span> <span class="ident">WriteFn</span>: ::<span class="ident">core</span>::<span class="ident">option</span>::<span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span>(<span class="ident">data</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">ImU8</span>, <span class="ident">off</span>: <span class="ident">usize</span>, <span class="ident">d</span>: <span class="ident">ImU8</span>)<span class="op">&gt;</span>,
@@ -106,23 +106,23 @@
     <span class="kw">pub</span> <span class="ident">DataPreviewAddr</span>: <span class="ident">usize</span>,
     <span class="kw">pub</span> <span class="ident">DataEditingAddr</span>: <span class="ident">usize</span>,
     <span class="kw">pub</span> <span class="ident">DataEditingTakeFocus</span>: <span class="ident">bool</span>,
-    <span class="kw">pub</span> <span class="ident">DataInputBuf</span>: [<span class="ident">cty</span>::<span class="ident">c_char</span>; <span class="number">32usize</span>],
-    <span class="kw">pub</span> <span class="ident">AddrInputBuf</span>: [<span class="ident">cty</span>::<span class="ident">c_char</span>; <span class="number">32usize</span>],
+    <span class="kw">pub</span> <span class="ident">DataInputBuf</span>: [<span class="ident">chlorine</span>::<span class="ident">c_char</span>; <span class="number">32usize</span>],
+    <span class="kw">pub</span> <span class="ident">AddrInputBuf</span>: [<span class="ident">chlorine</span>::<span class="ident">c_char</span>; <span class="number">32usize</span>],
     <span class="kw">pub</span> <span class="ident">GotoAddr</span>: <span class="ident">usize</span>,
     <span class="kw">pub</span> <span class="ident">HighlightMin</span>: <span class="ident">usize</span>,
     <span class="kw">pub</span> <span class="ident">HighlightMax</span>: <span class="ident">usize</span>,
-    <span class="kw">pub</span> <span class="ident">PreviewEndianess</span>: <span class="ident">cty</span>::<span class="ident">c_int</span>,
+    <span class="kw">pub</span> <span class="ident">PreviewEndianess</span>: <span class="ident">chlorine</span>::<span class="ident">c_int</span>,
     <span class="kw">pub</span> <span class="ident">PreviewDataType</span>: <span class="ident">ImGuiDataType</span>,
 }
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MemoryEditor_DataFormat_DataFormat_Bin</span>: <span class="ident">MemoryEditor_DataFormat</span> <span class="op">=</span> <span class="number">0</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MemoryEditor_DataFormat_DataFormat_Dec</span>: <span class="ident">MemoryEditor_DataFormat</span> <span class="op">=</span> <span class="number">1</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MemoryEditor_DataFormat_DataFormat_Hex</span>: <span class="ident">MemoryEditor_DataFormat</span> <span class="op">=</span> <span class="number">2</span>;
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MemoryEditor_DataFormat_DataFormat_COUNT</span>: <span class="ident">MemoryEditor_DataFormat</span> <span class="op">=</span> <span class="number">3</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">MemoryEditor_DataFormat</span> <span class="op">=</span> <span class="ident">cty</span>::<span class="ident">c_int</span>;
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">MemoryEditor_DataFormat</span> <span class="op">=</span> <span class="ident">chlorine</span>::<span class="ident">c_int</span>;
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">MemoryEditor_Sizes</span> {
-    <span class="kw">pub</span> <span class="ident">AddrDigitsCount</span>: <span class="ident">cty</span>::<span class="ident">c_int</span>,
+    <span class="kw">pub</span> <span class="ident">AddrDigitsCount</span>: <span class="ident">chlorine</span>::<span class="ident">c_int</span>,
     <span class="kw">pub</span> <span class="ident">LineHeight</span>: <span class="ident">f32</span>,
     <span class="kw">pub</span> <span class="ident">GlyphWidth</span>: <span class="ident">f32</span>,
     <span class="kw">pub</span> <span class="ident">HexCellWidth</span>: <span class="ident">f32</span>,
@@ -136,7 +136,7 @@
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">DrawContents</span>(
         <span class="ident">mem_edit</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">MemoryEditor</span>,
-        <span class="ident">mem_data</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">cty</span>::<span class="ident">c_void</span>,
+        <span class="ident">mem_data</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">chlorine</span>::<span class="ident">c_void</span>,
         <span class="ident">mem_size</span>: <span class="ident">usize</span>,
         <span class="ident">base_display_addr</span>: <span class="ident">usize</span>,
     );
@@ -144,8 +144,8 @@
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">DrawWindow</span>(
         <span class="ident">mem_edit</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">MemoryEditor</span>,
-        <span class="ident">title</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">cty</span>::<span class="ident">c_char</span>,
-        <span class="ident">mem_data</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">cty</span>::<span class="ident">c_void</span>,
+        <span class="ident">title</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">chlorine</span>::<span class="ident">c_char</span>,
+        <span class="ident">mem_data</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">chlorine</span>::<span class="ident">c_void</span>,
         <span class="ident">mem_size</span>: <span class="ident">usize</span>,
         <span class="ident">base_display_addr</span>: <span class="ident">usize</span>,
     );

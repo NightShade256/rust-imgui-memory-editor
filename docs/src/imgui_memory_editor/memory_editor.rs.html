@@ -306,7 +306,7 @@
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">marker</span>::<span class="ident">PhantomData</span>;
 <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">mem</span>;
 
-<span class="kw">use</span> <span class="ident">imgui</span>::{<span class="ident">ImColor</span>, <span class="ident">ImStr</span>, <span class="ident">Ui</span>};
+<span class="kw">use</span> <span class="ident">imgui</span>::{<span class="ident">ImColor32</span>, <span class="ident">ImStr</span>, <span class="ident">Ui</span>};
 <span class="kw">use</span> <span class="ident">imgui_memory_editor_sys</span> <span class="kw">as</span> <span class="ident">sys</span>;
 
 <span class="doccomment">/// Dear ImGui memory editor widget.</span>
@@ -394,23 +394,23 @@
     }
 
     <span class="doccomment">/// Get the `Cols` field.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_cols</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">cty</span>::<span class="ident">c_int</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_cols</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">chlorine</span>::<span class="ident">c_int</span> {
         <span class="self">self</span>.<span class="ident">raw_editor</span>.<span class="ident">Cols</span>
     }
 
     <span class="doccomment">/// Set the `Cols` field.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_cols</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">columns</span>: <span class="ident">cty</span>::<span class="ident">c_int</span>) {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_cols</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">columns</span>: <span class="ident">chlorine</span>::<span class="ident">c_int</span>) {
         <span class="self">self</span>.<span class="ident">raw_editor</span>.<span class="ident">Cols</span> <span class="op">=</span> <span class="ident">columns</span>;
     }
 
     <span class="doccomment">/// Get the `HighlightColor` field.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_highlight_color</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ImColor</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_highlight_color</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ImColor32</span> {
         <span class="self">self</span>.<span class="ident">raw_editor</span>.<span class="ident">HighlightColor</span>.<span class="ident">into</span>()
     }
 
     <span class="doccomment">/// Set the `HighlightColor` field.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_highlight_color</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">color</span>: <span class="ident">ImColor</span>) {
-        <span class="self">self</span>.<span class="ident">raw_editor</span>.<span class="ident">HighlightColor</span> <span class="op">=</span> <span class="ident">color</span>.<span class="ident">into</span>()
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_highlight_color</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">color</span>: <span class="ident">ImColor32</span>) {
+        <span class="self">self</span>.<span class="ident">raw_editor</span>.<span class="ident">HighlightColor</span> <span class="op">=</span> <span class="ident">color</span>.<span class="ident">to_bits</span>()
     }
 
     <span class="doccomment">/// Get the `OptShowHexII` field.</span>
@@ -474,22 +474,22 @@
     }
 
     <span class="doccomment">/// Get the `OptMidColsCount` field.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_mid_cols_count</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">cty</span>::<span class="ident">c_int</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_mid_cols_count</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">chlorine</span>::<span class="ident">c_int</span> {
         <span class="self">self</span>.<span class="ident">raw_editor</span>.<span class="ident">OptMidColsCount</span>
     }
 
     <span class="doccomment">/// Set the `OptMidColsCount` field.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_mid_cols_count</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">count</span>: <span class="ident">cty</span>::<span class="ident">c_int</span>) {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_mid_cols_count</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">count</span>: <span class="ident">chlorine</span>::<span class="ident">c_int</span>) {
         <span class="self">self</span>.<span class="ident">raw_editor</span>.<span class="ident">OptMidColsCount</span> <span class="op">=</span> <span class="ident">count</span>;
     }
 
     <span class="doccomment">/// Get the `OptAddrDigitsCount` field.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_addr_digits_count</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">cty</span>::<span class="ident">c_int</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_addr_digits_count</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">chlorine</span>::<span class="ident">c_int</span> {
         <span class="self">self</span>.<span class="ident">raw_editor</span>.<span class="ident">OptAddrDigitsCount</span>
     }
 
     <span class="doccomment">/// Set the `OptAddrDigitsCount` field.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_addr_digits_count</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">count</span>: <span class="ident">cty</span>::<span class="ident">c_int</span>) {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_addr_digits_count</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">count</span>: <span class="ident">chlorine</span>::<span class="ident">c_int</span>) {
         <span class="self">self</span>.<span class="ident">raw_editor</span>.<span class="ident">OptAddrDigitsCount</span> <span class="op">=</span> <span class="ident">count</span>;
     }
 
@@ -565,7 +565,7 @@
         <span class="kw">let</span> <span class="ident">mem_edit</span> <span class="op">=</span> (<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="ident">raw_editor</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">sys</span>::<span class="ident">MemoryEditor</span>;
 
         <span class="kw">let</span> <span class="ident">mem_size</span> <span class="op">=</span> <span class="ident">mem_data</span>.<span class="ident">len</span>();
-        <span class="kw">let</span> <span class="ident">mem_data</span> <span class="op">=</span> <span class="ident">mem_data</span>.<span class="ident">as_mut_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">cty</span>::<span class="ident">c_void</span>;
+        <span class="kw">let</span> <span class="ident">mem_data</span> <span class="op">=</span> <span class="ident">mem_data</span>.<span class="ident">as_mut_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">chlorine</span>::<span class="ident">c_void</span>;
 
         <span class="kw">unsafe</span> {
             <span class="ident">sys</span>::<span class="ident">DrawContents</span>(
@@ -591,7 +591,7 @@
         <span class="kw">let</span> <span class="ident">mem_edit</span> <span class="op">=</span> (<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>.<span class="ident">raw_editor</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">sys</span>::<span class="ident">MemoryEditor</span>;
 
         <span class="kw">let</span> <span class="ident">mem_size</span> <span class="op">=</span> <span class="ident">mem_data</span>.<span class="ident">len</span>();
-        <span class="kw">let</span> <span class="ident">mem_data</span> <span class="op">=</span> <span class="ident">mem_data</span>.<span class="ident">as_mut_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">cty</span>::<span class="ident">c_void</span>;
+        <span class="kw">let</span> <span class="ident">mem_data</span> <span class="op">=</span> <span class="ident">mem_data</span>.<span class="ident">as_mut_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">chlorine</span>::<span class="ident">c_void</span>;
 
         <span class="kw">unsafe</span> {
             <span class="ident">sys</span>::<span class="ident">DrawWindow</span>(
