@@ -1,7 +1,7 @@
 use std::marker::PhantomData;
 use std::mem;
 
-use imgui::{ImColor, ImStr, Ui};
+use imgui::{ImColor32, ImStr, Ui};
 use imgui_memory_editor_sys as sys;
 
 /// Dear ImGui memory editor widget.
@@ -89,23 +89,23 @@ impl MemoryEditor {
     }
 
     /// Get the `Cols` field.
-    pub fn get_cols(&self) -> cty::c_int {
+    pub fn get_cols(&self) -> chlorine::c_int {
         self.raw_editor.Cols
     }
 
     /// Set the `Cols` field.
-    pub fn set_cols(&mut self, columns: cty::c_int) {
+    pub fn set_cols(&mut self, columns: chlorine::c_int) {
         self.raw_editor.Cols = columns;
     }
 
     /// Get the `HighlightColor` field.
-    pub fn get_highlight_color(&self) -> ImColor {
+    pub fn get_highlight_color(&self) -> ImColor32 {
         self.raw_editor.HighlightColor.into()
     }
 
     /// Set the `HighlightColor` field.
-    pub fn set_highlight_color(&mut self, color: ImColor) {
-        self.raw_editor.HighlightColor = color.into()
+    pub fn set_highlight_color(&mut self, color: ImColor32) {
+        self.raw_editor.HighlightColor = color.to_bits()
     }
 
     /// Get the `OptShowHexII` field.
@@ -169,22 +169,22 @@ impl MemoryEditor {
     }
 
     /// Get the `OptMidColsCount` field.
-    pub fn get_mid_cols_count(&self) -> cty::c_int {
+    pub fn get_mid_cols_count(&self) -> chlorine::c_int {
         self.raw_editor.OptMidColsCount
     }
 
     /// Set the `OptMidColsCount` field.
-    pub fn set_mid_cols_count(&mut self, count: cty::c_int) {
+    pub fn set_mid_cols_count(&mut self, count: chlorine::c_int) {
         self.raw_editor.OptMidColsCount = count;
     }
 
     /// Get the `OptAddrDigitsCount` field.
-    pub fn get_addr_digits_count(&self) -> cty::c_int {
+    pub fn get_addr_digits_count(&self) -> chlorine::c_int {
         self.raw_editor.OptAddrDigitsCount
     }
 
     /// Set the `OptAddrDigitsCount` field.
-    pub fn set_addr_digits_count(&mut self, count: cty::c_int) {
+    pub fn set_addr_digits_count(&mut self, count: chlorine::c_int) {
         self.raw_editor.OptAddrDigitsCount = count;
     }
 
@@ -260,7 +260,7 @@ impl MemoryEditor {
         let mem_edit = (&mut self.raw_editor) as *mut sys::MemoryEditor;
 
         let mem_size = mem_data.len();
-        let mem_data = mem_data.as_mut_ptr() as *mut cty::c_void;
+        let mem_data = mem_data.as_mut_ptr() as *mut chlorine::c_void;
 
         unsafe {
             sys::DrawContents(
@@ -286,7 +286,7 @@ impl MemoryEditor {
         let mem_edit = (&mut self.raw_editor) as *mut sys::MemoryEditor;
 
         let mem_size = mem_data.len();
-        let mem_data = mem_data.as_mut_ptr() as *mut cty::c_void;
+        let mem_data = mem_data.as_mut_ptr() as *mut chlorine::c_void;
 
         unsafe {
             sys::DrawWindow(

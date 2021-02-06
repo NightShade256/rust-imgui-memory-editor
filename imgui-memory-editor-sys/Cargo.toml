@@ -1,10 +1,10 @@
 [package]
 name = "imgui-memory-editor-sys"
-version = "0.2.0"
+version = "0.3.0"
 authors = ["Anish Jewalikar <anishjewalikar@gmail.com>"]
 edition = "2018"
-description = "Raw, unsafe, no_std bindings to memory editor widget."
-license = "MIT"
+description = "Raw no_std bindings to Dear ImGui memory editor widget."
+license = "MIT OR Apache-2.0"
 readme = "README.md"
 repository = "https://github.com/NightShade256/rust-imgui-memory-editor"
 build = "build.rs"
@@ -14,4 +14,4 @@ links = "imgui_memory_editor"
 cc = "1.0"
 
 [dependencies]
-cty = "0.2"
+chlorine = "1.0"
