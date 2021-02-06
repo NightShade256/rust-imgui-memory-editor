@@ -29,4 +29,5 @@ You can access the docs for this crate [here](https://nightshade256.github.io/ru
 
 ## License
 
-This project is licensed under the terms of the MIT license.
+This project is licensed under the terms of the MIT license OR the Apache-2.0 license
+at your option.

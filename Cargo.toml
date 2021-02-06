@@ -5,15 +5,15 @@ members = [
 
 [package]
 name = "imgui-memory-editor"
-version = "0.2.0"
+version = "0.3.0"
 authors = ["Anish Jewalikar <anishjewalikar@gmail.com>"]
 edition = "2018"
-description = "Safe Rust bindings to Dear ImGui memory editor widget."
-license = "MIT"
+description = "Safe bindings to Dear ImGui memory editor widget."
+license = "MIT OR Apache-2.0"
 readme = "README.md"
 repository = "https://github.com/NightShade256/rust-imgui-memory-editor"
 
 [dependencies]
-cty = "0.2"
-imgui = "0.6"
+chlorine = "1.0"
+imgui = "0.7"
 imgui-memory-editor-sys = { path = "./imgui-memory-editor-sys" }

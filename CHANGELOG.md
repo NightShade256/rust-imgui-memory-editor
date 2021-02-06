@@ -2,6 +2,19 @@
 
 All changes to the crate will be documented here.
 
+## v0.3.0
+
+### Changes
+
+- Getters and Setters of `HighlightColor` now take in `ImColor32` due to an
+  upstream change.
+
+- The crates are now dual-licensed under the terms of MIT or Apache-2.0.
+
+- Switch to `chlorine` from `cty` as a provider of system C type aliases.
+
+- Update dependencies and submodules to latest versions.
+
 ## v0.2.0
 
 ### Changes
